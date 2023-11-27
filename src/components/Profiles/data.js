@@ -10,6 +10,7 @@ export const members=[
         nationality:'Korean',
         mbti:'ISFP',
         instagram: "https://www.instagram.com/nayeonyny",
+        
     },
     {
         name:'Jeongyeon',

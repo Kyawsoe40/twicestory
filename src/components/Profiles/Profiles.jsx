@@ -10,12 +10,14 @@ const Profiles = ({setInitialPage}) => {
   const [spring,api]=useSpring(()=>({
     from: {x:1000},
     to: {x:0},
-    config:{duration:500}
+    config:{duration:500},
+    delay: 500
   }))
   const [spring2,api2]=useSpring(()=>({
     from:{opacity:0},
     to:{opacity:1},
-    config:{duration:1200}
+    config:{duration:1200},
+    delay:500
   }))
   const handleClick=(e)=>{
     setMember(e)
