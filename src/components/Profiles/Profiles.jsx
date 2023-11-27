@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { useSpring ,animated} from '@react-spring/web';
 import  {members}  from './data';
 import { Link } from 'react-router-dom';
@@ -21,6 +21,8 @@ const Profiles = ({setInitialPage}) => {
   }))
   const handleClick=(e)=>{
     setMember(e)
+  }
+  useEffect((()=>{
     api.start({
       from: {x:1000},
       to: {x:0},
@@ -29,12 +31,12 @@ const Profiles = ({setInitialPage}) => {
       from:{opacity:0},
       to:{opacity:1},
     })
-  }
+  }),[member])
 
   return (
     <div  style={{background:'#fcfcfc'}}>
       <div className="my-32 px-20 max-xl:px-10 max-lg:pr-5 max-md:px-2 flex max-md:justify-around max-sm:flex-col">
-        <div className="pt-28 pr-20 max-lg:pr-0 max-sm:grid grid-cols-3">
+        <div className="pt-28 pr-20 max-lg:pr-0 max-sm:grid grid-cols-3 gap-y-5">
           {
             members.map((m)=>(
               <div onClick={()=>handleClick(m)} key={m.name} aria-label={m} className="cursor-pointer text-lg max-sm:text-base tracking-wide text-hover-grad text-custom-dark montserrat-font hover:scale-110 font-bold px-10 max-md:px-0 max-sm:px-2 z-10">{m.name}</div>
@@ -46,7 +48,7 @@ const Profiles = ({setInitialPage}) => {
             <animated.div style={{...spring,zIndex:10,boxShadow:'10px 10px 10px #B6B2AE'}} className="mx-10 max-xl:mx-6 max-lg:mx-0 max-lg:ml-5 mt-10 relative profile-img" >
               <img style={{zIndex:10,width:'100%',height:'100%'}} src={member.img} alt='nayeon' />
             </animated.div>
-            <div className="mx-0 top-36 max-sm:top-[350px] absolute profile-img" style={{zIndex:0,backgroundImage: 'linear-gradient(to right,  #ff5fa2,	#fccfa6)'}}></div>
+            <div className="mx-0 top-36 max-sm:top-[400px] absolute profile-img" style={{zIndex:0,backgroundImage: 'linear-gradient(to right,  #ff5fa2,	#fccfa6)'}}></div>
           </div>
           <animated.div className="" style={{...spring2,zIndex:1}}>
             <div className=" text-custom-dark text-lg flex flex-col max-lg:items-end" style={{textShadow:'1px 1px 2px #4A454D'}}>
