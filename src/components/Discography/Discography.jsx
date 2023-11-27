@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {discographies} from './data'
 import ReactPaginate from 'react-paginate'
 import { SlArrowLeft,SlArrowRight } from "react-icons/sl";
@@ -6,7 +6,8 @@ import DiscoCard from './DiscoCard';
 
 const Discography = ({initialPage,setInitialPage}) => {
   const [albums,setAlbums]=useState([])
- 
+  const [windowSize,setWindowSize]=useState([window.innerWidth,window.innerHeight]);
+  
   useEffect(()=>{
     setAlbums([])
     for (const [key, value] of Object.entries(discographies)) {
@@ -15,12 +16,35 @@ const Discography = ({initialPage,setInitialPage}) => {
       }
     }
   },[])
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth]);
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+  console.log(windowSize[0])
   const items=albums.sort((a,b)=> (a.release_date<b.release_date)?1:-1)
   console.log(items.length)
-  const pageCount=Math.ceil(items.length/8)
+  const [itemsPerPage,setItemsPerPage]=useState()
+  useEffect(()=>{
+    if(windowSize[0]>=1280){
+      setItemsPerPage(8)
+    }else if(windowSize[0]<1280 && windowSize[0]>=768){
+      setItemsPerPage(9)
+    }else if(windowSize[0]<768){
+      setItemsPerPage(6)
+    }
+  },[windowSize[0]])
+  console.log(itemsPerPage)
+  const pageCount=Math.ceil(items.length/itemsPerPage)
 
-  const itemOffset = (initialPage * 8) % items.length;
-  const endOffset = itemOffset + 8
+  const itemOffset = (initialPage * itemsPerPage) % items.length;
+  const endOffset = itemOffset + itemsPerPage
   const currentItems = items.slice(itemOffset, endOffset);
   const handlePageClick = (event) => {
     console.log(event.selected)
@@ -31,7 +55,7 @@ const Discography = ({initialPage,setInitialPage}) => {
   return (
       <div className='py-32 h-100'>
         <h1 className='text-5xl text-center vinasans-font tracking-wider text-grad overflow-hidden'>Discography</h1>
-        <div className="py-20 grid grid-cols-4 gap-10 px-5" currentitems={currentItems}>
+        <div className="py-20 grid grid-cols-4 max-xl:grid-cols-3 max-md:grid-cols-2 gap-10 px-5" currentitems={currentItems}>
           {
             currentItems.map((i)=>(
               <DiscoCard item={i} key={i.title} />

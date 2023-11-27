@@ -22,14 +22,14 @@ const AlbumDetail = () => {
   return (
     isReady? 
        <div className="py-32">
-            <div className="py-10 pl-20">
+            <div className="py-10 pl-20 max-md:pl-6">
                 <button onClick={()=> navigate(-1)} className='text-custom-dark montserrat-font font-bold text-hover-grad'>Back</button>
             </div>
             <AlbumInfo item={item[0]} />
-            <div className="flex gap-5 justify-center py-20">
+            <div className="flex max-lg:flex-col max-lg:items-center gap-5 justify-center py-20">
                 {item[0].music_video? 
                     item[0].music_video.map((m)=>
-                    <iframe width="560" height="315" src={m} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>)
+                    <iframe className='w-[560px] max-sm:w-full' height="315" src={m} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>)
                 :''}
             </div>
        </div>

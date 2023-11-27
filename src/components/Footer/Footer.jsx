@@ -3,7 +3,7 @@ import { FaFacebookF, FaInstagram, FaSpotify, FaTiktok, FaTwitter, FaYoutubeSqua
 import { Link } from 'react-router-dom';
 const Footer = ({colour}) => {
   return (
-    <div className={`flex justify-between absolute w-screen bottom-5 z-10 ${colour}`}>
+    <div className={`flex max-sm:flex-col justify-between max-sm:items-center gap-2 absolute w-screen bottom-5 z-10 ${colour}`}>
         <div className="flex text-xl pl-5" >
             <Link to='https://www.instagram.com/twicetagram' target='_blank' className='px-2 hover:px-3 duration-200'><FaInstagram /></Link>
             <Link to='https://www.facebook.com/JYPETWICE' target='_blank' className='px-2 hover:px-3 duration-200'><FaTwitter /></Link>
