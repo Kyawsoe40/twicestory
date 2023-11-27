@@ -22,7 +22,7 @@ const Profiles = ({setInitialPage}) => {
   const handleClick=(e)=>{
     setMember(e)
   }
-  useEffect((()=>{
+
     api.start({
       from: {x:1000},
       to: {x:0},
@@ -31,7 +31,7 @@ const Profiles = ({setInitialPage}) => {
       from:{opacity:0},
       to:{opacity:1},
     })
-  }),[member])
+
 
   return (
     <div  style={{background:'#fcfcfc'}}>
