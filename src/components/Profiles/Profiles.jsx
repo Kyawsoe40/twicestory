@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { useSpring ,animated} from '@react-spring/web';
 import  {members}  from './data';
 import { Link } from 'react-router-dom';
