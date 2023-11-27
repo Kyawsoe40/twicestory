@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect,  useState } from 'react'
 import {discographies} from './data'
 import ReactPaginate from 'react-paginate'
 import { SlArrowLeft,SlArrowRight } from "react-icons/sl";
@@ -27,7 +27,6 @@ const Discography = ({initialPage,setInitialPage}) => {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
-  console.log(windowSize[0])
   const items=albums.sort((a,b)=> (a.release_date<b.release_date)?1:-1)
   console.log(items.length)
   const [itemsPerPage,setItemsPerPage]=useState()
@@ -39,7 +38,7 @@ const Discography = ({initialPage,setInitialPage}) => {
     }else if(windowSize[0]<768){
       setItemsPerPage(6)
     }
-  },[windowSize[0]])
+  },[windowSize])
   console.log(itemsPerPage)
   const pageCount=Math.ceil(items.length/itemsPerPage)
 
