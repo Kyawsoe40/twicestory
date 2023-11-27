@@ -33,10 +33,13 @@ const Discography = ({initialPage,setInitialPage}) => {
   useEffect(()=>{
     if(windowSize[0]>=1280){
       setItemsPerPage(8)
-    }else if(windowSize[0]<1280 && windowSize[0]>=768){
+    }else if(windowSize[0]<1280 && windowSize[0]>=500){
       setItemsPerPage(9)
-    }else if(windowSize[0]<768){
+    }else if(windowSize[0]<768 && windowSize[0]>=500){
       setItemsPerPage(6)
+    }
+    else if(windowSize[0]<500){
+      setItemsPerPage(4)
     }
   },[windowSize])
   console.log(itemsPerPage)
@@ -54,7 +57,7 @@ const Discography = ({initialPage,setInitialPage}) => {
   return (
       <div className='py-32 h-100'>
         <h1 className='text-5xl text-center vinasans-font tracking-wider text-grad overflow-hidden'>Discography</h1>
-        <div className="py-20 grid grid-cols-4 max-xl:grid-cols-3 max-md:grid-cols-2 gap-10 px-5" currentitems={currentItems}>
+        <div className="py-20 grid grid-cols-4 max-xl:grid-cols-3 max-md:grid-cols-2 max-[499px]:grid-cols-1 gap-10 px-5" currentitems={currentItems}>
           {
             currentItems.map((i)=>(
               <DiscoCard item={i} key={i.title} />

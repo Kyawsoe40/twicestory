@@ -51,7 +51,7 @@ const Profiles = ({setInitialPage}) => {
             <div className="mx-0 top-36 max-sm:top-[400px] absolute profile-img" style={{zIndex:0,backgroundImage: 'linear-gradient(to right,  #ff5fa2,	#fccfa6)'}}></div>
           </div>
           <animated.div className="" style={{...spring2,zIndex:1}}>
-            <div className=" text-custom-dark text-lg flex flex-col max-lg:items-end" style={{textShadow:'1px 1px 2px #4A454D'}}>
+            <div className=" text-custom-dark text-lg flex flex-col max-lg:items-end max-sm:items-start" style={{textShadow:'1px 1px 2px #4A454D'}}>
               <h2 className='text-4xl max-md:text-2xl font-bold overflow-y-hidden pb-10 pr-2 montserrat-font italic'>{member.name}</h2>
               <p className='max-md:text-base'>Birth-name : {member.birthName[0]} / {member.birthName[1]}</p>
               <p className='max-md:text-base'>Birthday : {member.birthday}</p>
